@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">FeedTheCat</string>
+    <string name="satiety_label_name">Satiety</string>
+    <string name="feed_button_name">FEED</string>
+    <string name="cat_image_description">cat image</string>
+    <string name="feed_the_cat">Feed the cat</string>
+    <string name="about">About</string>
+    <string name="results">results</string>
+    <string name="share_button">SHARE</string>
+    <string name="add_result">add result</string>
+    <string name="result">Result</string>
+    <string name="date">Date</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="configure">Configure</string>
+    <string name="add_widget">Add widget</string>
+    <string name="app_widget_description">This is an app widget description</string>
+</resources>

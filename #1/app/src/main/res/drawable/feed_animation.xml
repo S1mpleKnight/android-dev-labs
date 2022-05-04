@@ -1,0 +1,6 @@
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:oneshot="true">
+    <item android:drawable="@drawable/feed_animation3" android:duration="200" />
+    <item android:drawable="@drawable/feed_animation2" android:duration="200" />
+    <item android:drawable="@drawable/feed_animation1" android:duration="200" />
+</animation-list>
