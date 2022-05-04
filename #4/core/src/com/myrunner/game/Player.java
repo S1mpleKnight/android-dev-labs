@@ -38,9 +38,9 @@ public class Player extends Sprite implements InputProcessor {
     public void update(float delta) {
         velocity.y -= gravity * delta;
 
-        if(velocity.y > speed)
+        if (velocity.y > speed)
             velocity.y = speed;
-        else if(velocity.y < -speed)
+        else if (velocity.y < -speed)
             velocity.y = -speed;
 
         float oldX = getX(), oldY = getY();
@@ -51,12 +51,12 @@ public class Player extends Sprite implements InputProcessor {
         increment = collisionLayer.getTileWidth();
         increment = getWidth() < increment ? getWidth() / 2 : increment / 2;
 
-        if(velocity.x < 0) // going left
+        if (velocity.x < 0) // going left
             collisionX = collidesLeft();
-        else if(velocity.x > 0) // going right
+        else if (velocity.x > 0) // going right
             collisionX = collidesRight();
 
-        if(collisionX) {
+        if (collisionX) {
             setX(oldX);
             velocity.x = 0;
         }
@@ -66,12 +66,12 @@ public class Player extends Sprite implements InputProcessor {
         increment = collisionLayer.getTileHeight();
         increment = getHeight() < increment ? getHeight() / 2 : increment / 2;
 
-        if(velocity.y < 0) // going down
+        if (velocity.y < 0) // going down
             canJump = collisionY = collidesBottom();
-        else if(velocity.y > 0) // going up
+        else if (velocity.y > 0) // going up
             collisionY = collidesTop();
 
-        if(collisionY) {
+        if (collisionY) {
             setY(oldY);
             velocity.y = 0;
         }
@@ -83,30 +83,30 @@ public class Player extends Sprite implements InputProcessor {
     }
 
     public boolean collidesRight() {
-        for(float step = 0; step <= getHeight(); step += increment)
-            if(isCellBlocked(getX() + getWidth(), getY() + step))
+        for (float step = 0; step <= getHeight(); step += increment)
+            if (isCellBlocked(getX() + getWidth(), getY() + step))
                 return true;
         return false;
     }
 
     public boolean collidesLeft() {
-        for(float step = 0; step <= getHeight(); step += increment)
-            if(isCellBlocked(getX(), getY() + step))
+        for (float step = 0; step <= getHeight(); step += increment)
+            if (isCellBlocked(getX(), getY() + step))
                 return true;
         return false;
     }
 
     public boolean collidesTop() {
-        for(float step = 0; step <= getWidth(); step += increment)
-            if(isCellBlocked(getX() + step, getY() + getHeight()))
+        for (float step = 0; step <= getWidth(); step += increment)
+            if (isCellBlocked(getX() + step, getY() + getHeight()))
                 return true;
         return false;
 
     }
 
     public boolean collidesBottom() {
-        for(float step = 0; step <= getWidth(); step += increment)
-            if(isCellBlocked(getX() + step, getY()))
+        for (float step = 0; step <= getWidth(); step += increment)
+            if (isCellBlocked(getX() + step, getY()))
                 return true;
         return false;
     }
@@ -114,9 +114,9 @@ public class Player extends Sprite implements InputProcessor {
 
     @Override
     public boolean keyDown(int keycode) {
-        switch(keycode) {
+        switch (keycode) {
             case Input.Keys.W:
-                if(canJump) {
+                if (canJump) {
                     velocity.y = speed / 1.8f;
                     canJump = false;
                 }
@@ -132,7 +132,7 @@ public class Player extends Sprite implements InputProcessor {
 
     @Override
     public boolean keyUp(int keycode) {
-        switch(keycode) {
+        switch (keycode) {
             case Input.Keys.A:
             case Input.Keys.D:
                 velocity.x = 0;
@@ -147,13 +147,14 @@ public class Player extends Sprite implements InputProcessor {
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-        if (screenY > getY()) {
-            if (screenX < getX()) {
+        if (screenY > (Gdx.graphics.getHeight() / 2)) {
+            if ((Gdx.graphics.getWidth() / 2) > screenX) {
                 velocity.x = -speed;
-            } else if (screenX > getX()) {
+            } else if ((Gdx.graphics.getWidth() / 2) < screenX) {
                 velocity.x = speed;
             }
-        } else if (screenY < getY() && canJump) {
+        }
+        if ((screenY < (Gdx.graphics.getHeight() / 2)) && canJump) {
             velocity.y = speed / 1.8f;
             canJump = false;
         }
